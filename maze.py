@@ -12,6 +12,11 @@
 from PIL import Image
 import os
 
+FILENAME = "impossible.gif"
+START_COORD = (1, 1)
+END_COORD = (399, 400)
+
+# Tokens used for backtracking
 START_TOKEN = 'S'
 END_TOKEN = 'E'
 LEFT = 'L'
@@ -20,9 +25,10 @@ UP = 'U'
 DOWN = 'D'
 UNEXPLORED = 'X'
 
-START_COLOR = (255, 30, 75)
+# Colors used for paths
+START_COLOR = (255, 255, 75)
 PATH_COLOR = (255, 30, 75)
-END_COLOR = (255, 30, 75)
+END_COLOR = (255, 30, 255)
 
 
 def read_maze_from_file(filename):
@@ -177,11 +183,11 @@ def backtrack_pixels(sol, out, start, end):
 
 
 def main():
-    maze, xmax, ymax = read_maze_from_file("impossible.gif")
+    maze, xmax, ymax = read_maze_from_file(FILENAME)
     print "Printing maze."
     print_2d(maze)
-    start = (1, 1)
-    end = (399, 399)
+    start = START_COORD
+    end = END_COORD
     sol = solve(maze, start, end)
     print "Printing solution."
     print_2d(sol)
